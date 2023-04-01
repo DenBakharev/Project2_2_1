@@ -2,6 +2,7 @@ package hiber.config;
 
 import hiber.model.Car;
 import hiber.model.User;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -22,19 +23,11 @@ import java.util.Properties;
 @EnableTransactionManagement
 @ComponentScan(value = "hiber")
 public class AppConfig {
-
-    @Autowired
     private Environment env;
-    private LocalSessionFactoryBean sessionFactory;
 
-    public void setEnvironment(Environment env) {
+    public AppConfig(Environment env) {
         this.env = env;
     }
-
-    public void setSessionFactory(LocalSessionFactoryBean sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
-
 
     @Bean
     public DataSource getDataSource() {
